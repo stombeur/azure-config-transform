@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureConfigTransform.CloudService", "AzureConfigTransform.CloudService\AzureConfigTransform.CloudService.ccproj", "{482A35ED-0B85-4977-8B26-CAD0B3AA28DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureConfigTransform.WorkerRole", "AzureConfigTransform.WorkerRole\AzureConfigTransform.WorkerRole.csproj", "{59DB9C06-25CE-4B36-9215-F70C0B660DCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureConfigTransforn.Config", "AzureConfigTransforn.Config", "{8929A018-7A5A-4548-AC1E-5CF9C55A9884}"
+	ProjectSection(SolutionItems) = preProject
+		AzureConfigTransform.Config\CustomCloudServicesTargets.targets = AzureConfigTransform.Config\CustomCloudServicesTargets.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureConfigTransform.CloudService", "AzureConfigTransform.CloudService", "{B4135FC6-1672-42D8-B06D-82105E10558A}"
+	ProjectSection(SolutionItems) = preProject
+		AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceConfiguration.Cloud.Prod.Transform.cscfg = AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceConfiguration.Cloud.Prod.Transform.cscfg
+		AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceConfiguration.Cloud.Test.Transform.cscfg = AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceConfiguration.Cloud.Test.Transform.cscfg
+		AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceDefinition.Cloud.Transform.csdef = AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceDefinition.Cloud.Transform.csdef
+		AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceDefinition.Local.Transform.csdef = AzureConfigTransform.Config\AzureConfigTransform.CloudService\ServiceDefinition.Local.Transform.csdef
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{482A35ED-0B85-4977-8B26-CAD0B3AA28DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{482A35ED-0B85-4977-8B26-CAD0B3AA28DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{482A35ED-0B85-4977-8B26-CAD0B3AA28DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{482A35ED-0B85-4977-8B26-CAD0B3AA28DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59DB9C06-25CE-4B36-9215-F70C0B660DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59DB9C06-25CE-4B36-9215-F70C0B660DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59DB9C06-25CE-4B36-9215-F70C0B660DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59DB9C06-25CE-4B36-9215-F70C0B660DCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B4135FC6-1672-42D8-B06D-82105E10558A} = {8929A018-7A5A-4548-AC1E-5CF9C55A9884}
+	EndGlobalSection
+EndGlobal

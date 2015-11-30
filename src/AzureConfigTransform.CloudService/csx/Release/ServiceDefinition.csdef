@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AzureConfigTransform.CloudService" schemaVersion="2015-04.2.6" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WorkerRole name="AzureConfigTransform.WorkerRole" vmsize="ExtraSmall">
+    <LocalResources>
+      <LocalStorage name="DiagnosticStore" sizeInMB="4096" cleanOnRoleRecycle="false" />
+    </LocalResources>
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="MyStorageAccount" />
+    </ConfigurationSettings>
+    <Endpoints />
+    <Certificates />
+  </WorkerRole>
+</ServiceDefinition>

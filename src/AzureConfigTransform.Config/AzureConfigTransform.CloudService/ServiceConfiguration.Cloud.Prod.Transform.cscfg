@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <Role name="AzureConfigTransform.WorkerRole">
+    <Instances count="4" xdt:Transform="Replace"/>
+    <ConfigurationSettings>
+      <Setting name="MyStorageAccount"  value="DefaultEndpointsProtocol=https;AccountName=myaccountnameinprod;AccountKey=xyz" xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+      <!--<Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" 
+               value="remotelogin"  xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" 
+               value="abc"  xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" 
+               value="123"  xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>-->
+    </ConfigurationSettings>
+    <Certificates>
+      <!--<Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" 
+                   thumbprint="thumbprint" thumbprintAlgorithm="sha1" xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>-->
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

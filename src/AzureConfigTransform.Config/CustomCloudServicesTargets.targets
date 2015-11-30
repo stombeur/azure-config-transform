@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- 
+  
+    These custom targets allow you to
+    - version the output .cspkg file based on the assemblyversion of the role
+    - create as many Azure service configurations as you want (.cscfg) based on a base config and a set of transforms like web.config and web.debug.config
+      -> these cscfg files will then be versioned and output alongside the .cspkg
+    - transform the Azure service definition (.csdef) based on the Service Configuration
+      -> this will allow you to specify additional service configurations with different VM sizes or Settings
+  
+  -->
+  
+  
+  <!-- define the TransformXml task from the current VS version -> hardcode the $(VisualStudioVersion) if this does not work on command line, or specify as a parameter to msbuild -->  
+  <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Web\Microsoft.Web.Publishing.Tasks.dll" />
+
+  <!-- folder names etc -->
+  <PropertyGroup>
+    <TransformFilesRootFolderName>AzureConfigTransform.Config</TransformFilesRootFolderName>
+    <TransformVersionOutputFolderName>version</TransformVersionOutputFolderName>
+    <TransformFilePostFix>.Transform</TransformFilePostFix>
+  </PropertyGroup>
+
+  <!-- perform all available .cscfg transforms for this configuration (Cloud, Local, ...) 
+       -> these should be put in ..\AzureConfigTransform.Config\<the name of the ccproj>\ServiceConfiguration.<your environment name here>.Transform.cscfg 
+       and copy the .cspkg and .cscfg files with a version number in their name to an output folder-->
+  <Target Name="AfterPublish">
+    <ItemGroup>
+      <!-- ..\ -->
+      <ConfigFiles Include="..\$(TransformFilesRootFolderName)\$(Name)\ServiceConfiguration.*$(TransformFilePostFix).cscfg"
+                   Exclude="" />
+    </ItemGroup>
+    <TransformXml Source="@(TargetServiceConfiguration)"
+                  Transform="%(ConfigFiles.Identity)"
+                  Destination="$(OutputPath)%(ConfigFiles.Filename)%(ConfigFiles.Extension)" />
+    
+    <Message importance="high" Text="Transformed @(TargetServiceConfiguration) using %(ConfigFiles.Identity)." />
+    
+
+    <Copy SourceFiles="$(OutputPath)%(ConfigFiles.Filename)%(ConfigFiles.Extension)"
+            DestinationFiles="$(PublishDir)\$(TransformVersionOutputFolderName)\$(Name).%(ConfigFiles.Filename).v$(RoleAssemblyVersion)%(ConfigFiles.Extension)" />
+
+    <Copy SourceFiles="$(PublishDir)$(TrailingSlashChar)$(ProjectName).cspkg"
+           DestinationFiles="$(PublishDir)\version\$(ProjectName).v$(RoleAssemblyVersion).cspkg" />   
+  </Target>
+
+  <!-- perform the appropriate .csdef transform for this configuration (Cloud, Local, ...) 
+        and include the file in the .cspkg -->
+  <Target Name="AfterValidateServiceModel">
+    <ItemGroup>
+      <CsDefFiles Include="..\$(TransformFilesRootFolderName)\$(Name)\ServiceDefinition.$(TargetProfile)$(TransformFilePostFix).csdef"
+                   Exclude="" />
+    </ItemGroup>
+
+    <TransformXml Source="@(SourceServiceDefinition)"
+                  Transform="%(CsDefFiles.Identity)"
+                  Destination="@(TargetServiceDefinition)" />
+
+    <Message importance="high" Text="Transformed @(TargetServiceDefinition) using %(CsDefFiles.Identity)." />
+
+  </Target>
+  
+  <!-- Get the version of the first role in this service by looking at its assembly 
+       - the property RoleAssembly should be defined per project, so in the corresponding .ccproj -->
+  <Target Name="DetermineAssemblyVersion" BeforeTargets="AfterValidateServiceModel">
+    <!-- look in .ccproj file for definition of @(RoleAssembly) -->
+    <GetAssemblyIdentity AssemblyFiles="@(RoleAssembly)">
+      <Output TaskParameter="Assemblies" ItemName="RoleAssemblyItems"/>
+    </GetAssemblyIdentity>
+
+    <PropertyGroup>
+      <RoleAssemblyVersion>%(RoleAssemblyItems.Version)</RoleAssemblyVersion>
+    </PropertyGroup>
+
+    <Message importance="high" Text="Version of %(RoleAssembly.Filename)%(RoleAssembly.Extension) is $(RoleAssemblyVersion)" />
+  </Target>
+          
+
+  </Project>

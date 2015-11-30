@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ValidationIssue Include="AzureConfigTransform.WorkerRole|AzureConfigTransform.WorkerRole|WAT190">
+      <ProjectName>AzureConfigTransform.WorkerRole</ProjectName>
+      <FilenameWithExtension>AzureConfigTransform.WorkerRole</FilenameWithExtension>
+      <Code>WAT190</Code>
+      <FileFullPath>AzureConfigTransform.WorkerRole</FileFullPath>
+      <WATMessage>True</WATMessage>
+      <Arguments>AzureConfigTransform.WorkerRole;.NET Framework 4.5.2</Arguments>
+      <HelpKeyword>WATValidationIssueWarning</HelpKeyword>
+    </ValidationIssue>
+    <ValidationIssue Include="AzureConfigTransform.WorkerRole|ServiceConfiguration.Cloud.cscfg|WAT170">
+      <ProjectName>AzureConfigTransform.WorkerRole</ProjectName>
+      <FilenameWithExtension>ServiceConfiguration.Cloud.cscfg</FilenameWithExtension>
+      <Code>WAT170</Code>
+      <FileFullPath>bin\Release\ServiceConfiguration.cscfg</FileFullPath>
+      <WATMessage>True</WATMessage>
+      <Arguments>Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString;AzureConfigTransform.WorkerRole;ServiceConfiguration.Cloud.cscfg</Arguments>
+      <HelpKeyword>WATValidationIssueWarning</HelpKeyword>
+    </ValidationIssue>
+    <ValidationIssue Include="AzureConfigTransform.WorkerRole|ServiceConfiguration.Cloud.cscfg|WAT170">
+      <ProjectName>AzureConfigTransform.WorkerRole</ProjectName>
+      <FilenameWithExtension>ServiceConfiguration.Cloud.cscfg</FilenameWithExtension>
+      <Code>WAT170</Code>
+      <FileFullPath>bin\Release\ServiceConfiguration.cscfg</FileFullPath>
+      <WATMessage>True</WATMessage>
+      <Arguments>MyStorageAccount;AzureConfigTransform.WorkerRole;ServiceConfiguration.Cloud.cscfg</Arguments>
+      <HelpKeyword>WATValidationIssueWarning</HelpKeyword>
+    </ValidationIssue>
+  </ItemGroup>
+</Project>
