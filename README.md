@@ -10,7 +10,8 @@ The web.config transform syntaxt (Xdt) is used, see https://msdn.microsoft.com/e
 * in every Azure .ccproj file for which you want to transform the config files
   * unload the .ccproj file and open it for editing
   * reference CustomCloudServicesTargets.targets in the .ccproj file
-  * add the path to the .NET assembly that you want to use the assemvlyversion number from
+  * add the path to the .NET assembly that you want to use the assemblyversion number from
+    * the .cspkg and .csfg files that are generated will be postfixed with this assembly's assemblyversion
 
 
 
