@@ -4,7 +4,8 @@ This repo allows you to add a build step to an Azure project to transform *.cscf
 The web.config transform syntaxt (Xdt) is used, see https://msdn.microsoft.com/en-us/library/dd465326(v=vs.110).aspx.
 
 ### note:
-if you ony wish to transform arbitrary xml files, see this gist: https://gist.github.com/stombeur/4115f149349d4520409163959b9db387
+if you only wish to transform arbitrary xml files, see this gist: https://gist.github.com/stombeur/4115f149349d4520409163959b9db387
+
 
 ### How to add to your project
 * add the CustomCloudServicesTargets.targets file to your solution (as a solution item)
